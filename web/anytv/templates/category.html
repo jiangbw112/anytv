@@ -1,0 +1,19 @@
+{% extends 'base_index.html'%}
+{% load static %}
+{% block classfication %}
+
+{#<div class="ui segment"  style="width:90%;margin:0 auto">#}
+    <div class="ui five cards">
+        {%  for key,val in cates.items %}
+        <div class="ui fluid card">
+      <div class="image">
+        <img src="{% static 'images/' %}{{ key }}">
+      </div>
+      <div class="content" style="margin: 0 auto">
+        <a class="header">{{ val }}</a>
+      </div>
+    </div>
+        {% endfor %}
+    </div>
+{#</div>#}
+{% endblock %}

@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AnyTV</title>
+    <link rel="stylesheet" href="{% static 'css/semantic.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/semantic.js' %}"></script>
+    <script src="{% static 'js/exporting.js' %}"></script>
+</head>
+<body>
+
+
+
+<div class="ui pointing menu" style="width:90%; margin:0 auto">
+    <div class="item">
+{#    <img src="/images/logo.png">#}
+<i class="video play icon"></i>
+  </div>
+  <a class="item" href="/index">首页 </a>
+{#  <a class="item" href="/classfication">分类 </a>#}
+
+
+  <div class="ui simple dropdown  item">
+    <span class="text" >
+    <a href="/category">分类</a>
+    </span>
+    <i class="dropdown icon"></i>
+    <div class="menu">
+        <div class="item" id="hos">风暴英雄</div>
+        <div class="item" id ='how'>炉石传说</div>
+        <div class="item" id ='ow'>守望先锋</div>
+        <div class="item" id ='war3'>魔兽争霸</div>
+    </div>
+  </div>
+
+
+
+  <div class="right menu">
+    <div class="item">
+      <div class="ui transparent icon input">
+        <input type="text" placeholder="搜索主播名字..." id="box" >
+        <i class="search link icon" id="search"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ui segment"  style="width:90%;margin:0 auto" id ='show_list'>
+{% block homepage %}
+{% endblock %}
+
+{% block classfication %}
+{% endblock %}
+</div>
+
+
+
+<script>
+    $('#ow').click(function(){
+         location.href='?cate=overwatch';
+    });
+    $('#how').click(function(){
+         location.href='?cate=how';
+    });
+    $('#hos').click(function(){
+         location.href='?cate=hots';
+    });
+    $('#war3').click(function(){
+         location.href='?cate=war3';
+    });
+
+
+
+    $('#box').keydown(function(e){
+        var search_value = document.getElementById('box').value ;
+        if(e.keyCode==13)location.href='?search='+search_value;
+    })
+
+    $('#search').click(function(e){
+        var search_value = document.getElementById('box').value ;
+         location.href='?search='+search_value;
+    })
+</script>
+
+</body>
+
+
+</html>
