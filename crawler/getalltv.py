@@ -155,25 +155,43 @@ def get_panda_all_info(game_channel):
         url='http://www.panda.tv/ajax_sort?token=&pageno={}&pagenum=120&classification={}'.format(page,cate)
 
         wb_data=requests.get(url)
-        result=wb_data.text.encode('latin-1').decode('unicode_escape')
-        ret=dict(dict(result)['data'])['items']
-        print(len(ret))
+        # result=wb_data.text.encode('latin-1').decode('unicode_escape')
+        wb=json.loads(wb_data.text)
+        roomlist=wb['data']['items']
+        for i in roomlist:
+            ob_num=int(i['person_num'])
+            if ob_num<5:
+                break
+            room_obs=i['person_num']
+            room_title=i['name']
+            room_url='http://www.panda.tv/'+i['id']
+            room_owner=i['userinfo']['nickName']
+            room_imgsrc=i['pictures']['img']
+            room_pic='熊猫'+i['id']+'.jpg'
+            room_tag=i['classification']['cname']
+
+            room={
+                'url':room_url,
+                'data_from':'熊猫',
+                'title':room_title,
+                'owner':room_owner,
+                'tag':room_tag,
+                'obs':room_obs,
+                'ob_num':ob_num,
+                'on_off':1,
+                'room_pic':room_pic,
+                'room_imgsrc':room_imgsrc
+            }
+            livetbl.insert_one(room)
+            # print(room)
+        if len(roomlist)<120:
+            break
 
 
 
 
 
-# get_panda()
-url='http://www.panda.tv/ajax_sort?token=&pageno={}&pagenum=120&classification={}'.format('1','overwatch')
 
-wb_data=requests.get(url)
-
-result=wb_data.text.encode('latin-1').decode('unicode_escape')
-re=json.loads(wb_data.text)
-# re2=re['data']
-print(result)
-print(re)
-# print(result)
 
 
 # init_crawl()
