@@ -188,8 +188,52 @@ def get_panda_all_info(game_channel):
             break
 
 
+def get_zhanqi_all_info(game_channel):
+    gameid={
+        'watch':'82',
+        'how':'9',
+        'hots':'21',
+        'war3':'18',
+        'sc2':'5'
 
+    }
 
+    # print(soup.select('#js-live-list-panel > div.tabc.active'))
+    cate=game_channel.split('/')[-1]
+    for page in range(1,10):
+        url='http://www.zhanqi.tv/api/static/game.lives/{}/30-{}.json'.format(gameid[cate],str(page))
+        wb_data=requests.get(url).text
+        wb=json.loads(wb_data)
+        roomlist=wb['data']['rooms']
+        for i in roomlist:
+            room_obs=i['online']
+            ob_num=int(room_obs)
+            if ob_num<5:
+                break
+            room_title=i['title']
+            room_url='http://www.zhanqi.tv/'+i['code']
+            room_owner=i['nickname']
+            room_imgsrc=i['bpic'].strip('\'')
+            room_pic='战旗'+i['code']+'.jpg'
+            room_tag=i['gameName']
+
+            room={
+                'url':room_url,
+                'data_from':'战旗',
+                'title':room_title,
+                'owner':room_owner,
+                'tag':room_tag,
+                'obs':room_obs,
+                'ob_num':ob_num,
+                'on_off':1,
+                'room_pic':room_pic,
+                'room_imgsrc':room_imgsrc
+            }
+            livetbl.insert_one(room)
+            # print(room)
+        if len(roomlist)<120:
+            break
+        # print(wb_data)
 
 
 

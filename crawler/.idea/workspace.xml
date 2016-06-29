@@ -14,7 +14,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/version1.0$getalltv.coverage" NAME="getalltv Coverage Results" MODIFIED="1467124171551" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/version1.0$getalltv.coverage" NAME="getalltv Coverage Results" MODIFIED="1467212712568" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -28,14 +28,15 @@
       <file leaf-file-name="getalltv.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/getalltv.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.08768971">
-              <caret line="151" column="37" selection-start-line="151" selection-start-column="37" selection-end-line="151" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.6408094">
+              <caret line="238" column="0" selection-start-line="238" selection-start-column="0" selection-end-line="238" selection-end-column="0" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
                 <element signature="e#628#752#0" expanded="false" />
                 <element signature="e#789#1032#0" expanded="false" />
                 <element signature="e#1057#1548#0" expanded="false" />
-                <element signature="e#4516#5788#0" expanded="false" />
+                <element signature="e#1571#2060#0" expanded="false" />
+                <element signature="e#2548#2923#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -94,6 +95,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -104,7 +106,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -351,15 +352,15 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1748401" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12313433" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3261105" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3261105" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296131" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.115926325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39869282" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -397,7 +398,8 @@
             <element signature="e#628#752#0" expanded="false" />
             <element signature="e#789#1032#0" expanded="false" />
             <element signature="e#1057#1548#0" expanded="false" />
-            <element signature="e#4516#5788#0" expanded="false" />
+            <element signature="e#1571#2060#0" expanded="false" />
+            <element signature="e#2548#2923#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -411,7 +413,8 @@
             <element signature="e#628#752#0" expanded="false" />
             <element signature="e#789#1032#0" expanded="false" />
             <element signature="e#1057#1548#0" expanded="false" />
-            <element signature="e#4516#5788#0" expanded="false" />
+            <element signature="e#1571#2060#0" expanded="false" />
+            <element signature="e#2548#2923#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -425,7 +428,8 @@
             <element signature="e#628#752#0" expanded="false" />
             <element signature="e#789#1032#0" expanded="false" />
             <element signature="e#1057#1548#0" expanded="false" />
-            <element signature="e#4516#5788#0" expanded="false" />
+            <element signature="e#1571#2060#0" expanded="false" />
+            <element signature="e#2548#2923#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -439,7 +443,8 @@
             <element signature="e#628#752#0" expanded="false" />
             <element signature="e#789#1032#0" expanded="false" />
             <element signature="e#1057#1548#0" expanded="false" />
-            <element signature="e#4516#5788#0" expanded="false" />
+            <element signature="e#1571#2060#0" expanded="false" />
+            <element signature="e#2548#2923#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -453,7 +458,8 @@
             <element signature="e#628#752#0" expanded="false" />
             <element signature="e#789#1032#0" expanded="false" />
             <element signature="e#1057#1548#0" expanded="false" />
-            <element signature="e#4516#5788#0" expanded="false" />
+            <element signature="e#1571#2060#0" expanded="false" />
+            <element signature="e#2548#2923#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -467,7 +473,8 @@
             <element signature="e#628#752#0" expanded="false" />
             <element signature="e#789#1032#0" expanded="false" />
             <element signature="e#1057#1548#0" expanded="false" />
-            <element signature="e#4516#5788#0" expanded="false" />
+            <element signature="e#1571#2060#0" expanded="false" />
+            <element signature="e#2548#2923#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -481,7 +488,8 @@
             <element signature="e#628#752#0" expanded="false" />
             <element signature="e#789#1032#0" expanded="false" />
             <element signature="e#1057#1548#0" expanded="false" />
-            <element signature="e#4516#5788#0" expanded="false" />
+            <element signature="e#1571#2060#0" expanded="false" />
+            <element signature="e#2548#2923#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -495,21 +503,38 @@
             <element signature="e#628#752#0" expanded="false" />
             <element signature="e#789#1032#0" expanded="false" />
             <element signature="e#1057#1548#0" expanded="false" />
-            <element signature="e#4516#5788#0" expanded="false" />
+            <element signature="e#1571#2060#0" expanded="false" />
+            <element signature="e#2548#2923#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/getalltv.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08768971">
-          <caret line="151" column="37" selection-start-line="151" selection-start-column="37" selection-end-line="151" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
             <element signature="e#628#752#0" expanded="false" />
             <element signature="e#789#1032#0" expanded="false" />
             <element signature="e#1057#1548#0" expanded="false" />
-            <element signature="e#4516#5788#0" expanded="false" />
+            <element signature="e#1571#2060#0" expanded="false" />
+            <element signature="e#2548#2923#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/getalltv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6408094">
+          <caret line="238" column="0" selection-start-line="238" selection-start-column="0" selection-end-line="238" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#628#752#0" expanded="false" />
+            <element signature="e#789#1032#0" expanded="false" />
+            <element signature="e#1057#1548#0" expanded="false" />
+            <element signature="e#1571#2060#0" expanded="false" />
+            <element signature="e#2548#2923#0" expanded="false" />
           </folding>
         </state>
       </provider>
