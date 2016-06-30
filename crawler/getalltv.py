@@ -4,7 +4,7 @@ import re
 import pymongo
 import os
 from shutil import rmtree
-from multiprocessing import Pool
+import multiprocessing
 import random
 import json
 import string
@@ -24,21 +24,21 @@ tv_cate={'war3':'魔兽争霸','overwatch':'守望先锋','sc2':'星际争霸','
 client = pymongo.MongoClient('localhost', 27017)
 maintbl=client['maintbl']
 livetbl=maintbl['livetbl']
-livetbl.remove()
+# livetbl.remove()
 
 
 def init_crawl():
-
-    path='D:/anyTv/version1.1/anytv/static/images/room_img/'
+    livetbl.remove()
+    path='../web/anytv/static/images/room_img/'
     if os.path.isdir(path):
         rmtree(path)
     os.mkdir(path)
 
 def downloadpic(url,filename):
-    r=requests.get(url,proxies=proxies)
+    r=requests.get(url)
     if r.status_code!=200:
         return
-    room_img_path='D:/anyTv/version1.1/anytv/static/images/room_img/'
+    room_img_path='../web/anytv/static/images/room_img/'
     target=room_img_path+filename
     with open(target,'wb') as fs:
         fs.write(r.content)
@@ -68,7 +68,7 @@ def get_panda():
     soup=BeautifulSoup(wb_data.text,'lxml')
 
     panda_channels=soup.select('li a.video-list-item-wrap')
-    print(panda_channels)
+
     gamelist=[]
     patten=re.compile('|'.join(tv_cate.values()))
     for i in panda_channels:
@@ -115,7 +115,7 @@ def get_quanmin():
         if not len(gamelist)==len(tv_cate):
             if(patten.search(i['name'])):
                 gamelist.append('http://www.quanmin.tv/game/'+i['slug'])
-    print(gamelist)
+    return gamelist
 
 
 def get_douyu_all_info(game_channel):
@@ -325,8 +325,8 @@ def get_quanmin_all_info(game_channel):
                 'room_pic':room_pic,
                 'room_imgsrc':room_imgsrc
             }
-            # livetbl.insert_one(room)
-            print(room)
+            livetbl.insert_one(room)
+            # print(room)
         if len(roomlist)<90:
             break
 
@@ -334,17 +334,25 @@ def get_quanmin_all_info(game_channel):
 
 
 # init_crawl()
-# a=get_douyu()
-# if len(a):
-#     print(a)
-# else:
-#     print('blocked')
-# list(map(get_douyu_all_info, a))
+
+
+# list(map(get_quanmin_all_info, get_quanmin()))
+# list(map(get_huya_all_info, get_huya()))
+# list(map(get_zhanqi_all_info, get_zhanqi()))
+# list(map(get_panda_all_info, get_panda()))
+
+# def dload(i):
+#     downloadpic(i['room_imgsrc'],i['room_pic'])
+
+
 # livelist=[i for i in livetbl.find()]
-# pool = Pool()
-# for i in livetbl.find():
-#     pool.apply_async(downloadpic,args=(i['room_imgsrc'],i['room_pic']))
+# multiprocessing.freeze_support()
+# pool = multiprocessing.Pool()
+#
+# pool.map(dload,livelist)
 # pool.close()
 # pool.join()
-# for i in livetbl.find():
-#     downloadpic(i['room_imgsrc'],i['room_pic'])
+#
+# def dload(i):
+for i in livetbl.find():
+    downloadpic(i['room_imgsrc'],i['room_pic'])
