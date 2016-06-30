@@ -7,6 +7,7 @@ from shutil import rmtree
 from multiprocessing import Pool
 import random
 import json
+import string
 
 proxy_list = [
     'http://218.202.111.10:80',
@@ -106,7 +107,7 @@ def get_huya():
 
 
 def get_douyu_all_info(game_channel):
-    for page in range(1,10):
+    for page in range(1,20):
         url=game_channel+'?page={}&isAjax=1'.format(str(page))
         # print(page)
         wb_data=requests.get(url,proxies=proxies)
@@ -150,8 +151,8 @@ def get_douyu_all_info(game_channel):
 
 
 def get_panda_all_info(game_channel):
-    for page in range(1,10):
-        cate=game_channel.split('/')[-1]
+    cate=game_channel.split('/')[-1]
+    for page in range(1,20):
         url='http://www.panda.tv/ajax_sort?token=&pageno={}&pagenum=120&classification={}'.format(page,cate)
 
         wb_data=requests.get(url)
@@ -213,7 +214,7 @@ def get_zhanqi_all_info(game_channel):
             room_title=i['title']
             room_url='http://www.zhanqi.tv/'+i['code']
             room_owner=i['nickname']
-            room_imgsrc=i['bpic'].strip('\'')
+            room_imgsrc=i['bpic']
             room_pic='战旗'+i['code']+'.jpg'
             room_tag=i['gameName']
 
@@ -231,12 +232,52 @@ def get_zhanqi_all_info(game_channel):
             }
             livetbl.insert_one(room)
             # print(room)
-        if len(roomlist)<120:
+        if len(roomlist)<30:
             break
         # print(wb_data)
 
 
+def get_huya_all_info(game_channel):
+    cate=requests.get(game_channel).text
+    patten=re.compile(r'(GID\s=\s)(.+);')
+    gameid = patten.search(cate).group(2).strip(' \'')
+    for page in range(1,20):
+        url='http://www.huya.com/index.php?m=Game&do=ajaxGameLiveByPage&gid={}&page={}&pageNum=1'.format(gameid,str(page))
+        wb_data=requests.get(url).text
+        wb=json.loads(wb_data)
+        roomlist=wb['data']['list']
+        for i in roomlist:
+            room_obs=i['totalCount']
+            ob_num=int(room_obs)
+            if ob_num<5:
+                break
+            room_title=i['introduction']
+            room_url='http://www.huya.com/'+i['privateHost']
+            room_owner=i['nick']
+            room_imgsrc=i['screenshot'].strip('\'')
+            room_pic='虎牙'+i['privateHost']+'.jpg'
+            room_tag=i['gameFullName']
 
+            room={
+                'url':room_url,
+                'data_from':'虎牙',
+                'title':room_title,
+                'owner':room_owner,
+                'tag':room_tag,
+                'obs':room_obs,
+                'ob_num':ob_num,
+                'on_off':1,
+                'room_pic':room_pic,
+                'room_imgsrc':room_imgsrc
+            }
+            livetbl.insert_one(room)
+            # print(room)
+        if len(roomlist)<20:
+            break
+
+
+get_zhanqi()
+get_zhanqi_all_info( 'http://www.zhanqi.tv/games/watch')
 
 # init_crawl()
 # a=get_douyu()
