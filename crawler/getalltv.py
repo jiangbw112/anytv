@@ -75,7 +75,7 @@ def get_panda():
         if not len(gamelist)==len(tv_cate):
             if(patten.search(str(i))):
                 gamelist.append('http://www.panda.tv'+i.get('href'))
-    print(gamelist)
+    return gamelist
 
 def get_zhanqi():
     wb_data = requests.get('http://www.zhanqi.tv/games')
@@ -89,7 +89,7 @@ def get_zhanqi():
         if not len(gamelist)==len(tv_cate):
             if(patten.search(str(i))):
                 gamelist.append('http://www.zhanqi.tv'+i.get('href'))
-    print(gamelist)
+    return gamelist
 
 def get_huya():
     wb_data = requests.get('http://www.huya.com/g')
@@ -102,8 +102,20 @@ def get_huya():
         if not len(gamelist)==len(tv_cate):
             if(patten.search(str(i))):
                 gamelist.append(i.get('href'))
-    print(gamelist)
+    return gamelist
 
+
+def get_quanmin():
+    wb_data = requests.get('http://www.quanmin.tv/json/categories/list.json').text
+    wb=json.loads(wb_data)
+
+    patten=re.compile('|'.join(tv_cate.values()))
+    gamelist=[]
+    for i in wb:
+        if not len(gamelist)==len(tv_cate):
+            if(patten.search(i['name'])):
+                gamelist.append('http://www.quanmin.tv/game/'+i['slug'])
+    print(gamelist)
 
 
 def get_douyu_all_info(game_channel):
@@ -276,8 +288,50 @@ def get_huya_all_info(game_channel):
             break
 
 
-get_zhanqi()
-get_zhanqi_all_info( 'http://www.zhanqi.tv/games/watch')
+def get_quanmin_all_info(game_channel):
+    cate=game_channel.split('/')[-1]
+    for page in range(1,20):
+        if page==1:
+            url='http://www.quanmin.tv/json/categories/{}/list.json'.format(cate)
+        else:
+            url='http://www.quanmin.tv/json/categories/{}/list_{}.json'.format(cate,str(page))
+
+        wb_data=requests.get(url)
+        # result=wb_data.text.encode('latin-1').decode('unicode_escape')
+        wb=json.loads(wb_data.text)
+
+        roomlist=wb['data']
+        for i in roomlist:
+            ob_num=int(i['view'])
+            if ob_num<5:
+                break
+            room_obs=i['view']
+            room_title=i['title']
+            room_url='http://www.quanmin.tv/v/'+i['uid']
+            room_owner=i['nick']
+            room_imgsrc=i['thumb']
+            room_pic='全民'+i['uid']+'.jpg'
+            room_tag=i['category_name']
+
+            room={
+                'url':room_url,
+                'data_from':'全民',
+                'title':room_title,
+                'owner':room_owner,
+                'tag':room_tag,
+                'obs':room_obs,
+                'ob_num':ob_num,
+                'on_off':1,
+                'room_pic':room_pic,
+                'room_imgsrc':room_imgsrc
+            }
+            # livetbl.insert_one(room)
+            print(room)
+        if len(roomlist)<90:
+            break
+
+
+
 
 # init_crawl()
 # a=get_douyu()
