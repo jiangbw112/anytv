@@ -9,14 +9,18 @@ import random
 import json
 import string
 
-proxy_list = [
-    'http://218.202.111.10:80',
-    'http://120.202.249.201:80',
-    'http://58.49.164.222:8118',
-    'http://120.202.249.202:8080',
-    ]
-proxy_ip = random.choice(proxy_list) # 随机获取代理ip
-proxies = {'http': proxy_ip}
+resp = requests.get("http://tor1024.com/static/proxy_pool.txt")
+ips_txt = resp.text.strip().split("\n")
+proxy_list = []
+for i in ips_txt:
+    try:
+        k = json.loads(i)
+        proxy_list.append(k)
+    except Exception as e:
+        print(e)
+
+proxies = random.choice(proxy_list) # 随机获取代理ip
+
 
 
 tv_cate={'war3':'魔兽争霸','overwatch':'守望先锋','sc2':'星际争霸','hots':'风暴英雄','how':'炉石传说'}
