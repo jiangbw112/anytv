@@ -19,7 +19,7 @@ from anytv_web.views import index,category
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^index/', index),
+    url(r'', index),
     url(r'^category/', category)
 
 ]
