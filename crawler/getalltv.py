@@ -19,7 +19,7 @@ for i in ips_txt:
     except Exception as e:
         print(e)
 
-proxies = random.choice(proxy_list) # 随机获取代理ip
+# proxies = random.choice(proxy_list) # 随机获取代理ip
 
 
 
@@ -39,7 +39,9 @@ def init_crawl():
     os.mkdir(path)
 
 def downloadpic(url,filename):
-    r=requests.get(url)
+    global proxy_list
+    proxies = random.choice(proxy_list) # 随机获取代理ip
+    r=requests.get(url,proxies=proxies)
     if r.status_code!=200:
         return
     room_img_path='../web/anytv/static/images/room_img/'
@@ -51,6 +53,8 @@ def downloadpic(url,filename):
 
 def get_douyu():
     url ='http://www.douyu.com/directory'
+    global proxy_list
+    proxies = random.choice(proxy_list) # 随机获取代理ip
     wb_data = requests.get(url,proxies=proxies)
     if wb_data.status_code!=200:
         return
@@ -67,7 +71,9 @@ def get_douyu():
 
 def get_panda():
     url='http://www.panda.tv/cate'
-    wb_data = requests.get(url)
+    global proxy_list
+    proxies = random.choice(proxy_list) # 随机获取代理ip
+    wb_data = requests.get(url,proxies=proxies)
     wb_data.encoding='utf-8'
     soup=BeautifulSoup(wb_data.text,'lxml')
 
@@ -82,7 +88,10 @@ def get_panda():
     return gamelist
 
 def get_zhanqi():
-    wb_data = requests.get('http://www.zhanqi.tv/games')
+    url='http://www.zhanqi.tv/games'
+    global proxy_list
+    proxies = random.choice(proxy_list) # 随机获取代理ip
+    wb_data = requests.get(url,proxies=proxies)
     wb_data.encoding='utf-8'
     soup=BeautifulSoup(wb_data.text,'lxml')
 
@@ -96,7 +105,10 @@ def get_zhanqi():
     return gamelist
 
 def get_huya():
-    wb_data = requests.get('http://www.huya.com/g')
+    url='http://www.huya.com/g'
+    global proxy_list
+    proxies = random.choice(proxy_list) # 随机获取代理ip
+    wb_data = requests.get(url,proxies=proxies)
     soup=BeautifulSoup(wb_data.text,'lxml')
 
     channels=soup.select('a.pic.clickstat')
@@ -110,7 +122,9 @@ def get_huya():
 
 
 def get_quanmin():
-    wb_data = requests.get('http://www.quanmin.tv/json/categories/list.json').text
+    global proxy_list
+    proxies = random.choice(proxy_list) # 随机获取代理ip
+    wb_data = requests.get('http://www.quanmin.tv/json/categories/list.json',proxies=proxies).text
     wb=json.loads(wb_data)
 
     patten=re.compile('|'.join(tv_cate.values()))
@@ -123,9 +137,10 @@ def get_quanmin():
 
 
 def get_douyu_all_info(game_channel):
+    global proxy_list
     for page in range(1,20):
         url=game_channel+'?page={}&isAjax=1'.format(str(page))
-        # print(page)
+        proxies = random.choice(proxy_list) # 随机获取代理ip
         wb_data=requests.get(url,proxies=proxies)
         soup=BeautifulSoup(wb_data.text,'lxml')
         # print(soup.prettify())
@@ -168,10 +183,11 @@ def get_douyu_all_info(game_channel):
 
 def get_panda_all_info(game_channel):
     cate=game_channel.split('/')[-1]
+    global proxy_list
     for page in range(1,20):
         url='http://www.panda.tv/ajax_sort?token=&pageno={}&pagenum=120&classification={}'.format(page,cate)
-
-        wb_data=requests.get(url)
+        proxies = random.choice(proxy_list) # 随机获取代理ip
+        wb_data=requests.get(url,proxies=proxies)
         # result=wb_data.text.encode('latin-1').decode('unicode_escape')
         wb=json.loads(wb_data.text)
         roomlist=wb['data']['items']
@@ -214,12 +230,13 @@ def get_zhanqi_all_info(game_channel):
         'sc2':'5'
 
     }
-
+    global proxy_list
     # print(soup.select('#js-live-list-panel > div.tabc.active'))
     cate=game_channel.split('/')[-1]
     for page in range(1,10):
+        proxies = random.choice(proxy_list) # 随机获取代理ip
         url='http://www.zhanqi.tv/api/static/game.lives/{}/30-{}.json'.format(gameid[cate],str(page))
-        wb_data=requests.get(url).text
+        wb_data=requests.get(url,proxies=proxies).text
         wb=json.loads(wb_data)
         roomlist=wb['data']['rooms']
         for i in roomlist:
@@ -257,9 +274,11 @@ def get_huya_all_info(game_channel):
     cate=requests.get(game_channel).text
     patten=re.compile(r'(GID\s=\s)(.+);')
     gameid = patten.search(cate).group(2).strip(' \'')
+    global proxy_list
     for page in range(1,20):
         url='http://www.huya.com/index.php?m=Game&do=ajaxGameLiveByPage&gid={}&page={}&pageNum=1'.format(gameid,str(page))
-        wb_data=requests.get(url).text
+        proxies = random.choice(proxy_list) # 随机获取代理ip
+        wb_data=requests.get(url,proxies=proxies).text
         wb=json.loads(wb_data)
         roomlist=wb['data']['list']
         for i in roomlist:
@@ -294,13 +313,14 @@ def get_huya_all_info(game_channel):
 
 def get_quanmin_all_info(game_channel):
     cate=game_channel.split('/')[-1]
+    global proxy_list
     for page in range(1,20):
         if page==1:
             url='http://www.quanmin.tv/json/categories/{}/list.json'.format(cate)
         else:
             url='http://www.quanmin.tv/json/categories/{}/list_{}.json'.format(cate,str(page))
-
-        wb_data=requests.get(url)
+        proxies = random.choice(proxy_list) # 随机获取代理ip
+        wb_data=requests.get(url,proxies=proxies)
         # result=wb_data.text.encode('latin-1').decode('unicode_escape')
         wb=json.loads(wb_data.text)
 
@@ -337,26 +357,23 @@ def get_quanmin_all_info(game_channel):
 
 
 
-# init_crawl()
+init_crawl()
 
-
-# list(map(get_quanmin_all_info, get_quanmin()))
-# list(map(get_huya_all_info, get_huya()))
-# list(map(get_zhanqi_all_info, get_zhanqi()))
-# list(map(get_panda_all_info, get_panda()))
-
-# def dload(i):
-#     downloadpic(i['room_imgsrc'],i['room_pic'])
-
-
-# livelist=[i for i in livetbl.find()]
+pool = multiprocessing.Pool()
 # multiprocessing.freeze_support()
-# pool = multiprocessing.Pool()
-#
-# pool.map(dload,livelist)
-# pool.close()
-# pool.join()
-#
-# def dload(i):
+pool.map(get_quanmin_all_info, get_quanmin())
+pool.map(get_huya_all_info, get_huya())
+pool.map(get_zhanqi_all_info, get_zhanqi())
+pool.map(get_panda_all_info, get_panda())
+
 for i in livetbl.find():
-    downloadpic(i['room_imgsrc'],i['room_pic'])
+    pool.apply_async(downloadpic,args=(i['room_imgsrc'],i['room_pic'],))
+pool.close()
+pool.join()
+
+
+#
+#
+#
+
+
